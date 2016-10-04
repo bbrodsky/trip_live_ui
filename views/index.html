@@ -16,28 +16,18 @@
           <div>
             <h4>Hotels</h4>
             <select data-type="hotel" id="hotel-choices">
-
-              {% for hotel in hotels %}
-              <option>{{hotel.name}}</option>
-              {% endfor %}
             </select>
             <button data-action="add" class="btn btn-primary btn-circle pull-right add-hotel">+</button>
           </div>
           <div>
             <h4>Restaurants</h4>
             <select data-type="restaurant" id="restaurant-choices">
-              {% for restaurant in restaurants %}
-              <option>{{restaurant.name}}</option>
-              {% endfor %}
             </select>
             <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
           </div>
           <div>
             <h4>Activities</h4>
             <select data-type="activity" id="activity-choices">
-              {% for activity in activities %}
-              <option>{{activity.name}}</option>
-              {% endfor %}
             </select>
             <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
           </div>
@@ -93,9 +83,21 @@
     </div>
   </div>
   <script>
-    var hotels = {{ hotels | dump | safe }};
-    var restaurants = {{ restaurants | dump | safe }};
-    var activities = {{ activities | dump | safe }};
+  var places = {
+    "hotel-choices" : {{ hotels | dump | safe }},
+    "restaurant-choices" : {{ restaurants | dump | safe }},
+    "activity-choices" : {{ activities | dump | safe }}
+  };
+  </script>
+  <script>
+  $.each(places, function(keyP, valueP) {
+    $.each(valueP, function(key, value) {
+       $("#" + keyP)
+           .append($("<option></option>")
+                      .attr("value",key)
+                      .text(value.name));
+    });
+  });
   </script>
 </div>
 
