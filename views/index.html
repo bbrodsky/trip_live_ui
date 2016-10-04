@@ -88,8 +88,6 @@
     "restaurant-choices" : {{ restaurants | dump | safe }},
     "activity-choices" : {{ activities | dump | safe }}
   };
-  </script>
-  <script>
   $.each(places, function(keyP, valueP) {
     $.each(valueP, function(key, value) {
        $("#" + keyP)
