@@ -84,13 +84,13 @@
   </div>
   <script>
   var places = {
-    "hotel-choices" : {{ hotels | dump | safe }},
-    "restaurant-choices" : {{ restaurants | dump | safe }},
-    "activity-choices" : {{ activities | dump | safe }}
+    "hotel" : {{ hotels | dump | safe }},
+    "restaurant" : {{ restaurants | dump | safe }},
+    "activity" : {{ activities | dump | safe }}
   };
   $.each(places, function(keyP, valueP) {
     $.each(valueP, function(key, value) {
-       $("#" + keyP)
+       $("#" + keyP + "-choices")
            .append($("<option></option>")
                       .attr("value",key)
                       .text(value.name));
